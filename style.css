@@ -1,0 +1,704 @@
+/* ================================
+   VARIÁVEIS DO BLOG
+================================ */
+
+:root {
+    --bg-body: #f9f9fb;
+    --text-color: #2d3748;
+    --accent-color: #e53e3e;
+    --accent-hover: #c53030;
+
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+
+    --input-bg: #ffffff;
+    --input-text: #2d3748;
+
+    --recipe-bg: #fffaf0;
+    --heading-color: #1a202c;
+    --secondary-text: #4a5568;
+    --muted-text: #718096;
+    --sidebar-link: #4a5568;
+
+    --max-width: 1100px;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+
+    --footer-bg: #1a202c;
+    --footer-text: #a0aec0;
+}
+
+/* ================================
+   MODO ESCURO
+================================ */
+
+body.dark-mode {
+    --bg-body: #111827;
+    --text-color: #e5e7eb;
+
+    --card-bg: #1f2937;
+    --border-color: #374151;
+
+    --input-bg: #374151;
+    --input-text: #f9fafb;
+
+    --recipe-bg: #29251c;
+    --heading-color: #f9fafb;
+    --secondary-text: #cbd5e1;
+    --muted-text: #9ca3af;
+    --sidebar-link: #d1d5db;
+
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.30);
+
+    --footer-bg: #0b1120;
+    --footer-text: #9ca3af;
+}
+
+/* ================================
+   RESET
+================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Georgia, Cambria, Cochin, Times, "Times New Roman", serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-body);
+    color: var(--text-color);
+    line-height: 1.7;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.blog-header {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background 0.3s ease;
+}
+
+.header-container {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 15px 20px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: sans-serif;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    color: var(--accent-color);
+}
+
+/* ================================
+   MENU
+================================ */
+
+.nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: var(--secondary-text);
+
+    font-family: sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+
+    transition: color 0.2s ease;
+}
+
+.nav-menu a:hover,
+.nav-menu a.active {
+    color: var(--accent-color);
+}
+
+/* ================================
+   BOTÃO MODO ESCURO
+================================ */
+
+.theme-toggle {
+    width: 42px;
+    height: 42px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 50%;
+
+    background: var(--card-bg);
+    color: var(--text-color);
+
+    font-size: 1.1rem;
+    cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background: var(--accent-color);
+    color: white;
+    border-color: var(--accent-color);
+
+    transform: rotate(15deg) scale(1.05);
+}
+
+/* ================================
+   HERO
+================================ */
+
+.hero-section {
+    background:
+        linear-gradient(
+            rgba(0, 0, 0, 0.65),
+            rgba(0, 0, 0, 0.65)
+        ),
+        url("https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=1600&q=80")
+        center / cover no-repeat;
+
+    color: white;
+    text-align: center;
+
+    padding: 80px 20px;
+}
+
+.hero-content h2 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+
+    font-family: sans-serif;
+    opacity: 0.9;
+}
+
+/* ================================
+   PESQUISA
+================================ */
+
+.search-container {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+#pesquisa {
+    width: 100%;
+
+    padding: 14px 20px;
+
+    font-size: 1rem;
+
+    border: none;
+    border-radius: 30px;
+
+    outline: none;
+
+    font-family: sans-serif;
+
+    background: var(--input-bg);
+    color: var(--input-text);
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+}
+
+#pesquisa::placeholder {
+    color: #9ca3af;
+}
+
+/* ================================
+   LAYOUT
+================================ */
+
+.blog-layout {
+    max-width: var(--max-width);
+
+    margin: 40px auto;
+
+    padding: 0 20px;
+
+    display: grid;
+
+    grid-template-columns: 2fr 1fr;
+
+    gap: 40px;
+}
+
+/* ================================
+   FEED
+================================ */
+
+.blog-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* ================================
+   POSTS
+================================ */
+
+.blog-post {
+    background: var(--card-bg);
+
+    border-radius: 12px;
+
+    overflow: hidden;
+
+    box-shadow: var(--shadow);
+
+    border: 1px solid var(--border-color);
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.3s ease;
+}
+
+.blog-post:hover {
+    transform: translateY(-3px);
+}
+
+.post-img {
+    width: 100%;
+    height: 350px;
+
+    object-fit: cover;
+}
+
+.post-content {
+    padding: 30px;
+}
+
+.post-category {
+    color: var(--accent-color);
+
+    text-transform: uppercase;
+
+    font-size: 0.8rem;
+    font-weight: bold;
+
+    font-family: sans-serif;
+
+    letter-spacing: 1px;
+}
+
+.post-title {
+    font-size: 2rem;
+
+    margin: 10px 0;
+
+    color: var(--heading-color);
+
+    line-height: 1.3;
+}
+
+.post-meta {
+    font-size: 0.85rem;
+
+    color: var(--muted-text);
+
+    margin-bottom: 15px;
+
+    font-family: sans-serif;
+}
+
+.post-excerpt {
+    color: var(--secondary-text);
+
+    margin-bottom: 25px;
+}
+
+/* ================================
+   ÁREA DOS BOTÕES
+================================ */
+
+.post-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-top: 25px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid var(--border-color);
+}
+
+/* BOTÃO LIKE */
+
+.like-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 10px 16px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 25px;
+
+    background: var(--card-bg);
+    color: var(--text-color);
+
+    cursor: pointer;
+
+    font-family: sans-serif;
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.like-btn:hover {
+    color: white;
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+
+    transform: scale(1.04);
+}
+
+.like-btn.liked {
+    background: #fee2e2;
+    color: #e53e3e;
+    border-color: #fca5a5;
+}
+
+body.dark-mode .like-btn.liked {
+    background: #451a1a;
+    color: #f87171;
+    border-color: #7f1d1d;
+}
+
+.like-icon {
+    font-size: 1.2rem;
+
+    transition: transform 0.2s ease;
+}
+
+.like-btn:active .like-icon {
+    transform: scale(1.4);
+}
+
+.like-count {
+    min-width: 20px;
+    text-align: center;
+}
+
+/* ================================
+   BOTÃO LER RECEITA
+================================ */
+
+.recipe-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 18px;
+
+    border: none;
+    border-radius: 25px;
+
+    background: var(--accent-color);
+    color: white;
+
+    cursor: pointer;
+
+    font-family: sans-serif;
+    font-weight: bold;
+
+    transition: all 0.2s ease;
+}
+
+.recipe-button:hover {
+    background: var(--accent-hover);
+    transform: translateY(-2px);
+}
+
+/* ================================
+   RECEITA
+================================ */
+
+.receita-interna {
+    background: var(--recipe-bg);
+
+    border-left: 4px solid var(--accent-color);
+
+    padding: 20px;
+
+    border-radius: 0 8px 8px 0;
+
+    margin-top: 20px;
+}
+
+.receita-interna h3 {
+    font-family: sans-serif;
+
+    font-size: 1.1rem;
+
+    margin: 15px 0 10px;
+
+    color: #3182ce;
+}
+
+.receita-interna ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* ================================
+   SIDEBAR
+================================ */
+
+.blog-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.sidebar-card {
+    background: var(--card-bg);
+
+    padding: 25px;
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border-color);
+
+    box-shadow: var(--shadow);
+
+    transition: background 0.3s ease;
+}
+
+.sidebar-card h3 {
+    font-family: sans-serif;
+
+    font-size: 1.1rem;
+
+    margin-bottom: 15px;
+
+    border-bottom: 2px solid var(--border-color);
+
+    padding-bottom: 5px;
+}
+
+.profile-card {
+    text-align: center;
+}
+
+.author-img {
+    width: 100px;
+    height: 100px;
+
+    border-radius: 50%;
+
+    object-fit: cover;
+
+    margin-bottom: 15px;
+}
+
+.profile-card p {
+    font-size: 0.95rem;
+
+    color: var(--secondary-text);
+}
+
+/* ================================
+   LINKS DA SIDEBAR
+================================ */
+
+.sidebar-links {
+    list-style: none;
+}
+
+.sidebar-links li {
+    margin-bottom: 10px;
+}
+
+.sidebar-links a {
+    text-decoration: none;
+
+    color: var(--sidebar-link);
+
+    font-family: sans-serif;
+    font-size: 0.95rem;
+
+    transition: color 0.2s ease;
+}
+
+.sidebar-links a:hover {
+    color: var(--accent-color);
+}
+
+/* ================================
+   SEM RESULTADOS
+================================ */
+
+.no-results {
+    background: var(--card-bg);
+
+    padding: 40px;
+
+    text-align: center;
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border-color);
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+.blog-footer {
+    background: var(--footer-bg);
+
+    color: var(--footer-text);
+
+    padding: 60px 20px 30px;
+
+    text-align: center;
+
+    margin-top: 60px;
+}
+
+.footer-content h3 {
+    color: white;
+
+    font-family: sans-serif;
+
+    margin-bottom: 10px;
+}
+
+.footer-content p {
+    margin-bottom: 25px;
+}
+
+.newsletter-form {
+    display: flex;
+
+    justify-content: center;
+
+    max-width: 400px;
+
+    margin: 0 auto 40px;
+
+    gap: 10px;
+}
+
+.newsletter-form input {
+    flex: 1;
+
+    padding: 12px 15px;
+
+    border: none;
+
+    border-radius: 6px;
+
+    outline: none;
+}
+
+.newsletter-form button {
+    background: var(--accent-color);
+
+    color: white;
+
+    border: none;
+
+    padding: 0 20px;
+
+    border-radius: 6px;
+
+    cursor: pointer;
+
+    font-weight: bold;
+
+    font-family: sans-serif;
+
+    transition: background 0.2s ease;
+}
+
+.newsletter-form button:hover {
+    background: var(--accent-hover);
+}
+
+.copyright {
+    font-size: 0.85rem;
+
+    border-top: 1px solid #2d3748;
+
+    padding-top: 20px;
+
+    font-family: sans-serif;
+}
+
+/* ================================
+   RESPONSIVO
+================================ */
+
+@media (max-width: 768px) {
+
+    .blog-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content h2 {
+        font-size: 2rem;
+    }
+
+    .post-title {
+        font-size: 1.5rem;
+    }
+
+    .post-img {
+        height: 220px;
+    }
+
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-menu {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .post-actions {
+        flex-wrap: wrap;
+    }
+}

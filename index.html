@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+```
+<title>🍰 Bolos & Sabores</title>
+
+<style>
+
+    /* ==============================
+       VARIÁVEIS
+    ============================== */
+
+    :root {
+        --bg: #fff8f5;
+        --card: #ffffff;
+        --text: #3b2f2f;
+        --text-secondary: #6b5b5b;
+
+        --primary: #e85d75;
+        --primary-hover: #d6455d;
+
+        --border: #eadbd6;
+
+        --recipe-bg: #fff1e8;
+
+        --header: #ffffff;
+
+        --shadow:
+            0 8px 25px rgba(80, 40, 40, 0.08);
+    }
+
+
+    /* ==============================
+       MODO ESCURO
+    ============================== */
+
+    body.dark {
+        --bg: #121212;
+        --card: #1e1e1e;
+        --text: #f5eeee;
+        --text-secondary: #c5b8b8;
+
+        --primary: #ff7189;
+        --primary-hover: #ff526f;
+
+        --border: #383030;
+
+        --recipe-bg: #2a2020;
+
+        --header: #1a1a1a;
+
+        --shadow:
+            0 8px 25px rgba(0, 0, 0, 0.35);
+    }
+
+
+    /* ==============================
+       RESET
+    ============================== */
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: var(--bg);
+        color: var(--text);
+
+        font-family:
+            Georgia,
+            "Times New Roman",
+            serif;
+
+        line-height: 1.7;
+
+        transition:
+            background 0.3s,
+            color 0.3s;
+    }
+
+
+    /* ==============================
+       HEADER
+    ============================== */
+
+    header {
+        background: var(--header);
+
+        border-bottom:
+            1px solid var(--border);
+
+        position: sticky;
+        top: 0;
+
+        z-index: 1000;
+
+        transition: 0.3s;
+    }
+
+    .header-container {
+        max-width: 1100px;
+
+        margin: auto;
+
+        padding: 15px 20px;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+    }
+
+
+    .logo {
+        font-size: 1.6rem;
+
+        font-weight: bold;
+
+        color: var(--text);
+
+        text-decoration: none;
+    }
+
+    .logo span {
+        color: var(--primary);
+    }
+
+
+    nav {
+        display: flex;
+
+        align-items: center;
+
+        gap: 20px;
+    }
+
+    nav a {
+        color: var(--text-secondary);
+
+        text-decoration: none;
+
+        font-family: Arial, sans-serif;
+
+        font-size: 0.95rem;
+
+        transition: 0.2s;
+    }
+
+    nav a:hover {
+        color: var(--primary);
+    }
+
+
+    /* ==============================
+       BOTÃO TEMA
+    ============================== */
+
+    #temaBtn {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 50%;
+
+        border: 1px solid var(--border);
+
+        background: var(--card);
+
+        color: var(--text);
+
+        cursor: pointer;
+
+        font-size: 1.2rem;
+
+        transition: 0.3s;
+    }
+
+    #temaBtn:hover {
+        background: var(--primary);
+
+        color: white;
+
+        transform:
+            rotate(15deg)
+            scale(1.08);
+    }
+
+
+    /* ==============================
+       HERO
+    ============================== */
+
+    .hero {
+        min-height: 430px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        text-align: center;
+
+        color: white;
+
+        padding: 60px 20px;
+
+        background:
+            linear-gradient(
+                rgba(0,0,0,0.55),
+                rgba(0,0,0,0.55)
+            ),
+            url("https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=80")
+            center / cover;
+    }
+
+
+    .hero-content {
+        max-width: 750px;
+    }
+
+
+    .hero h1 {
+        font-size: 3.2rem;
+
+        margin-bottom: 15px;
+    }
+
+    .hero p {
+        font-size: 1.15rem;
+
+        margin-bottom: 30px;
+
+        font-family: Arial, sans-serif;
+    }
+
+
+    /* ==============================
+       PESQUISA
+    ============================== */
+
+    .search {
+        max-width: 550px;
+
+        margin: auto;
+    }
+
+    #pesquisa {
+        width: 100%;
+
+        padding: 16px 22px;
+
+        border: none;
+
+        border-radius: 30px;
+
+        outline: none;
+
+        font-size: 1rem;
+
+        background: white;
+
+        color: #333;
+
+        box-shadow:
+            0 8px 25px
+            rgba(0,0,0,0.2);
+    }
+
+
+    /* ==============================
+       CATEGORIAS
+    ============================== */
+
+    .categorias {
+        max-width: 1100px;
+
+        margin: 35px auto 0;
+
+        padding: 0 20px;
+
+        display: flex;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 10px;
+    }
+
+    .categoria-btn {
+        padding: 10px 18px;
+
+        border-radius: 25px;
+
+        border: 1px solid var(--border);
+
+        background: var(--card);
+
+        color: var(--text);
+
+        cursor: pointer;
+
+        font-family: Arial, sans-serif;
+
+        transition: 0.2s;
+    }
+
+    .categoria-btn:hover,
+    .categoria-btn.active {
+        background: var(--primary);
+
+        color: white;
+
+        border-color: var(--primary);
+
+        transform: translateY(-2px);
+    }
+
+
+    /* ==============================
+       CONTEÚDO
+    ============================== */
+
+    main {
+        max-width: 1100px;
+
+        margin: 40px auto;
+
+        padding: 0 20px;
+    }
+
+
+    .titulo-secao {
+        text-align: center;
+
+        margin-bottom: 30px;
+    }
+
+    .titulo-secao h2 {
+        font-size: 2rem;
+
+        margin-bottom: 5px;
+    }
+
+    .titulo-secao p {
+        color: var(--text-secondary);
+    }
+
+
+    /* ==============================
+       GRID
+    ============================== */
+
+    .receitas {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 25px;
+    }
+
+
+    /* ==============================
+       CARD
+    ============================== */
+
+    .card {
+        background: var(--card);
+
+        border:
+            1px solid var(--border);
+
+        border-radius: 16px;
+
+        overflow: hidden;
+
+        box-shadow: var(--shadow);
+
+        transition:
+            transform 0.25s,
+            box-shadow 0.25s;
+    }
+
+    .card:hover {
+        transform:
+            translateY(-7px);
+
+        box-shadow:
+            0 15px 35px
+            rgba(80,40,40,0.15);
+    }
+
+
+    .card-img {
+        width: 100%;
+
+        height: 220px;
+
+        object-fit: cover;
+    }
+
+
+    .card-content {
+        padding: 22px;
+    }
+
+
+    .categoria {
+        color: var(--primary);
+
+        text-transform: uppercase;
+
+        font-size: 0.75rem;
+
+        font-family: Arial, sans-serif;
+
+        font-weight: bold;
+
+        letter-spacing: 1px;
+    }
+
+
+    .card h3 {
+        font-size: 1.4rem;
+
+        margin:
+            8px 0 10px;
+    }
+
+
+    .card p {
+        color: var(--text-secondary);
+
+        margin-bottom: 18px;
+    }
+
+
+    /* ==============================
+       AÇÕES
+    ============================== */
+
+    .acoes {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 10px;
+
+        padding-top: 15px;
+
+        border-top:
+            1px solid var(--border);
+    }
+
+
+    .like-btn,
+    .ver-btn {
+        border: none;
+
+        cursor: pointer;
+
+        font-family: Arial, sans-serif;
+
+        transition: 0.2s;
+    }
+
+
+    .like-btn {
+        background: transparent;
+
+        color: var(--text);
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        font-size: 1rem;
+    }
+
+
+    .like-btn:hover {
+        color: var(--primary);
+
+        transform: scale(1.05);
+    }
+
+
+    .like-btn.liked {
+        color: #e63956;
+    }
+
+
+    .ver-btn {
+        background: var(--primary);
+
+        color: white;
+
+        padding:
+            9px 15px;
+
+        border-radius: 20px;
+
+        font-weight: bold;
+    }
+
+
+    .ver-btn:hover {
+        background:
+            var(--primary-hover);
+
+        transform:
+            translateY(-2px);
+    }
+
+
+    /* ==============================
+       MODAL
+    ============================== */
+
+    .modal {
+        display: none;
+
+        position: fixed;
+
+        inset: 0;
+
+        background:
+            rgba(0,0,0,0.7);
+
+        z-index: 2000;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 20px;
+    }
+
+
+    .modal.active {
+        display: flex;
+    }
+
+
+    .modal-content {
+        background: var(--card);
+
+        color: var(--text);
+
+        max-width: 650px;
+
+        width: 100%;
+
+        max-height: 90vh;
+
+        overflow-y: auto;
+
+        border-radius: 16px;
+
+        padding: 30px;
+
+        position: relative;
+    }
+
+
+    .fechar {
+        position: absolute;
+
+        top: 15px;
+
+        right: 20px;
+
+        border: none;
+
+        background: transparent;
+
+        color: var(--text);
+
+        font-size: 1.8rem;
+
+        cursor: pointer;
+    }
+
+
+    .modal-content h2 {
+        color: var(--primary);
+
+        margin-bottom: 20px;
+    }
+
+
+    .modal-content h3 {
+        margin:
+            20px 0 8px;
+    }
+
+
+    .modal-content ul {
+        margin-left: 25px;
+    }
+
+
+    /* ==============================
+       NEWSLETTER
+    ============================== */
+
+    .newsletter {
+        margin-top: 60px;
+
+        padding: 50px 20px;
+
+        background: var(--recipe-bg);
+
+        text-align: center;
+    }
+
+
+    .newsletter h2 {
+        margin-bottom: 10px;
+    }
+
+
+    .newsletter p {
+        color: var(--text-secondary);
+
+        margin-bottom: 20px;
+    }
+
+
+    .newsletter-form {
+        max-width: 500px;
+
+        margin: auto;
+
+        display: flex;
+
+        gap: 10px;
+    }
+
+
+    .newsletter-form input {
+        flex: 1;
+
+        padding: 13px;
+
+        border:
+            1px solid var(--border);
+
+        border-radius: 8px;
+
+        outline: none;
+
+        background: var(--card);
+
+        color: var(--text);
+    }
+
+
+    .newsletter-form button {
+        border: none;
+
+        background: var(--primary);
+
+        color: white;
+
+        padding:
+            0 20px;
+
+        border-radius: 8px;
+
+        cursor: pointer;
+
+        font-weight: bold;
+    }
+
+
+    .newsletter-form button:hover {
+        background:
+            var(--primary-hover);
+    }
+
+
+    /* ==============================
+       FOOTER
+    ============================== */
+
+    footer {
+        background: #211b1b;
+
+        color: #cdbebe;
+
+        text-align: center;
+
+        padding: 30px 20px;
+
+        margin-top: 50px;
+    }
+
+
+    /* ==============================
+       MENSAGEM
+    ============================== */
+
+    .sem-resultados {
+        grid-column: 1 / -1;
+
+        text-align: center;
+
+        padding: 50px;
+
+        background: var(--card);
+
+        border-radius: 15px;
+
+        border:
+            1px solid var(--border);
+    }
+
+
+    /* ==============================
+       RESPONSIVO
+    ============================== */
+
+    @media (max-width: 850px) {
+
+        .receitas {
+            grid-template-columns:
+                repeat(2, 1fr);
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+        }
+    }
+
+
+    @media (max-width: 600px) {
+
+        .header-container {
+            flex-direction: column;
+
+            gap: 15px;
+        }
+
+        nav {
+            flex-wrap: wrap;
+
+            justify-content: center;
+        }
+
+        .receitas {
+            grid-template-columns: 1fr;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+        }
+
+        .newsletter-form {
+            flex-direction: column;
+        }
+
+        .newsletter-form button {
+            padding: 13px;
+        }
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<!-- =================================
+     CABEÇALHO
+================================= -->
+
+<header>
+
+```
+<div class="header-container">
+
+    <a href="#" class="logo">
+        🍰 Bolos<span>&Sabores</span>
+    </a>
+
+
+    <nav>
+
+        <a href="#inicio">
+            Início
+        </a>
+
+        <a href="#receitas">
+            Receitas
+        </a>
+
+        <a href="#newsletter">
+            Contato
+        </a>
+
+        <button
+            id="temaBtn"
+            title="Alterar tema">
+
+            🌙
+
+        </button>
+
+    </nav>
+
+</div>
+```
+
+</header>
+
+<!-- =================================
+     HERO
+================================= -->
+
+<section
+    class="hero"
+    id="inicio">
+
+```
+<div class="hero-content">
+
+    <h1>
+        🍰 Receitas de Bolo
+    </h1>
+
+    <p>
+        Receitas deliciosas, fáceis e perfeitas
+        para deixar qualquer momento mais doce.
+    </p>
+
+
+    <div class="search">
+
+        <input
+            type="text"
+            id="pesquisa"
+            placeholder="🔎 Procure por bolo de chocolate, cenoura..."
+            autocomplete="off">
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- =================================
+     CATEGORIAS
+================================= -->
+
+<div class="categorias">
+
+```
+<button
+    class="categoria-btn active"
+    onclick="filtrarCategoria('todos', this)">
+
+    🍰 Todos
+
+</button>
+
+
+<button
+    class="categoria-btn"
+    onclick="filtrarCategoria('chocolate', this)">
+
+    🍫 Chocolate
+
+</button>
+
+
+<button
+    class="categoria-btn"
+    onclick="filtrarCategoria('frutas', this)">
+
+    🍓 Frutas
+
+</button>
+
+
+<button
+    class="categoria-btn"
+    onclick="filtrarCategoria('caseiro', this)">
+
+    🏠 Caseiros
+
+</button>
+```
+
+</div>
+
+<!-- =================================
+     RECEITAS
+================================= -->
+
+<main id="receitas">
+
+```
+<div class="titulo-secao">
+
+    <h2>
+        Nossas Receitas
+    </h2>
+
+    <p>
+        Escolha seu bolo favorito e mãos à massa!
+    </p>
+
+</div>
+
+
+<div
+    class="receitas"
+    id="listaReceitas">
+
+</div>
+```
+
+</main>
+
+<!-- =================================
+     NEWSLETTER
+================================= -->
+
+<section
+    class="newsletter"
+    id="newsletter">
+
+```
+<h2>
+    📩 Receba novas receitas
+</h2>
+
+<p>
+    Cadastre seu e-mail para receber
+    receitas deliciosas.
+</p>
+
+
+<form
+    class="newsletter-form"
+    id="newsletterForm">
+
+    <input
+        type="email"
+        id="email"
+        placeholder="Seu melhor e-mail"
+        required>
+
+    <button type="submit">
+        Inscrever
+    </button>
+
+</form>
+```
+
+</section>
+
+<!-- =================================
+     MODAL
+================================= -->
+
+<div
+    class="modal"
+    id="modal">
+
+```
+<div class="modal-content">
+
+    <button
+        class="fechar"
+        onclick="fecharModal()">
+
+        ×
+
+    </button>
+
+    <div id="conteudoModal"></div>
+
+</div>
+```
+
+</div>
+
+<!-- =================================
+     FOOTER
+================================= -->
+
+<footer>
+
+```
+<p>
+    © 2026 Bolos & Sabores.
+    Feito com ❤️ para quem ama bolo.
+</p>
+```
+
+</footer>
+
+<script>
+
+/* ==========================================
+   DADOS DAS RECEITAS
+========================================== */
+
+const receitas = [
+
+    {
+        id: "chocolate",
+        categoria: "chocolate",
+        nome: "Bolo de Chocolate Fofinho",
+
+        imagem:
+        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80",
+
+        descricao:
+        "Um bolo de chocolate macio, úmido e muito saboroso.",
+
+        ingredientes: [
+            "2 xícaras de farinha de trigo",
+            "1 xícara de chocolate em pó",
+            "1 xícara de açúcar",
+            "2 ovos",
+            "1 xícara de leite",
+            "1/2 xícara de óleo",
+            "1 colher de fermento"
+        ],
+
+        preparo:
+        "Misture os ingredientes secos. Acrescente os ovos, leite e óleo. Misture bem. Coloque em uma forma untada e asse por aproximadamente 40 minutos a 180°C."
+    },
+
+
+    {
+        id: "cenoura",
+        categoria: "caseiro",
+        nome: "Bolo de Cenoura com Chocolate",
+
+        imagem:
+        "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80",
+
+        descricao:
+        "O clássico bolo de cenoura brasileiro com cobertura de chocolate.",
+
+        ingredientes: [
+            "3 cenouras médias",
+            "3 ovos",
+            "1 xícara de óleo",
+            "2 xícaras de açúcar",
+            "2 e 1/2 xícaras de farinha",
+            "1 colher de fermento",
+            "200g de chocolate para cobertura"
+        ],
+
+        preparo:
+        "Bata a cenoura, os ovos e o óleo no liquidificador. Misture com os ingredientes secos. Asse por cerca de 40 minutos. Depois cubra com chocolate derretido."
+    },
+
+
+    {
+        id: "morango",
+        categoria: "frutas",
+        nome: "Bolo de Morango",
+
+        imagem:
+        "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80",
+
+        descricao:
+        "Um bolo delicado com morangos frescos e muito sabor.",
+
+        ingredientes: [
+            "2 xícaras de farinha",
+            "1 xícara de açúcar",
+            "3 ovos",
+            "1 xícara de leite",
+            "1 colher de fermento",
+            "300g de morangos",
+            "200ml de creme de leite"
+        ],
+
+        preparo:
+        "Prepare a massa misturando os ingredientes. Asse até dourar. Depois de frio, recheie com creme e morangos frescos."
+    },
+
+
+    {
+        id: "coco",
+        categoria: "caseiro",
+        nome: "Bolo de Coco Cremoso",
+
+        imagem:
+        "https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=800&q=80",
+
+        descricao:
+        "Um bolo cremoso e aromático perfeito para o café da tarde.",
+
+        ingredientes: [
+            "2 xícaras de farinha",
+            "1 xícara de açúcar",
+            "3 ovos",
+            "200ml de leite de coco",
+            "100g de coco ralado",
+            "1 colher de fermento"
+        ],
+
+        preparo:
+        "Misture todos os ingredientes até obter uma massa homogênea. Coloque em uma forma untada e asse a 180°C por aproximadamente 40 minutos."
+    },
+
+
+    {
+        id: "banana",
+        categoria: "frutas",
+        nome: "Bolo de Banana Caramelizada",
+
+        imagem:
+        "https://images.unsplash.com/photo-1602351447937-745cb720612f?auto=format&fit=crop&w=800&q=80",
+
+        descricao:
+        "Bolo macio de banana com uma deliciosa camada caramelizada.",
+
+        ingredientes: [
+            "4 bananas maduras",
+            "2 xícaras de farinha",
+            "1 xícara de açúcar",
+            "3 ovos",
+            "1/2 xícara de óleo",
+            "1 colher de fermento",
+            "Açúcar para caramelizar"
+        ],
+
+        preparo:
+        "Caramelize o açúcar na forma e coloque as bananas. Prepare a massa e despeje sobre as bananas. Asse por aproximadamente 40 minutos."
+    },
+
+
+    {
+        id: "brigadeiro",
+        categoria: "chocolate",
+        nome: "Bolo Brigadeiro",
+
+        imagem:
+        "https://images.unsplash.com/photo-1575377427642-087cf684f29d?auto=format&fit=crop&w=800&q=80",
+
+        descricao:
+        "Um bolo extremamente chocolatudo coberto com brigadeiro.",
+
+        ingredientes: [
+            "2 xícaras de farinha",
+            "1 xícara de chocolate",
+            "1 xícara de açúcar",
+            "3 ovos",
+            "1 xícara de leite",
+            "1 lata de leite condensado",
+            "2 colheres de chocolate"
+        ],
+
+        preparo:
+        "Prepare a massa de chocolate e asse. Para a cobertura, cozinhe leite condensado com chocolate até engrossar. Cubra o bolo e finalize com granulado."
+    }
+
+];
+
+
+
+/* ==========================================
+   CARREGAR RECEITAS
+========================================== */
+
+function carregarReceitas(lista = receitas) {
+
+    const container =
+        document.getElementById("listaReceitas");
+
+    container.innerHTML = "";
+
+
+    if (lista.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="sem-resultados">
+
+                <h2>
+                    😢 Nenhum bolo encontrado
+                </h2>
+
+                <p>
+                    Tente procurar por outro nome.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    lista.forEach(receita => {
+
+        const likes =
+            localStorage.getItem(
+                `likes-${receita.id}`
+            ) || 0;
+
+
+        const curtiu =
+            localStorage.getItem(
+                `curtiu-${receita.id}`
+            ) === "true";
+
+
+        const card = document.createElement("article");
+
+        card.className = "card";
+
+
+        card.innerHTML = `
+
+            <img
+                src="${receita.imagem}"
+                alt="${receita.nome}"
+                class="card-img">
+
+
+            <div class="card-content">
+
+                <span class="categoria">
+                    ${receita.categoria}
+                </span>
+
+
+                <h3>
+                    ${receita.nome}
+                </h3>
+
+
+                <p>
+                    ${receita.descricao}
+                </p>
+
+
+                <div class="acoes">
+
+
+                    <button
+                        class="like-btn ${curtiu ? "liked" : ""}"
+                        onclick="darLike('${receita.id}')">
+
+                        <span>
+                            ${curtiu ? "❤️" : "🤍"}
+                        </span>
+
+                        <span id="contador-${receita.id}">
+                            ${likes}
+                        </span>
+
+                        <span>
+                            likes
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="ver-btn"
+                        onclick="abrirReceita('${receita.id}')">
+
+                        📖 Ver receita
+
+                    </button>
+
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+
+/* ==========================================
+   SISTEMA DE LIKE
+========================================== */
+
+function darLike(id) {
+
+    const chaveLikes =
+        `likes-${id}`;
+
+    const chaveCurtiu =
+        `curtiu-${id}`;
+
+
+    let likes =
+        parseInt(
+            localStorage.getItem(chaveLikes)
+        ) || 0;
+
+
+    const curtiu =
+        localStorage.getItem(chaveCurtiu)
+        === "true";
+
+
+    if (curtiu) {
+
+        likes--;
+
+        localStorage.setItem(
+            chaveCurtiu,
+            "false"
+        );
+
+    } else {
+
+        likes++;
+
+        localStorage.setItem(
+            chaveCurtiu,
+            "true"
+        );
+    }
+
+
+    localStorage.setItem(
+        chaveLikes,
+        likes
+    );
+
+
+    carregarReceitas();
+}
+
+
+
+/* ==========================================
+   ABRIR RECEITA
+========================================== */
+
+function abrirReceita(id) {
+
+    const receita =
+        receitas.find(
+            item => item.id === id
+        );
+
+
+    if (!receita) return;
+
+
+    const modal =
+        document.getElementById("modal");
+
+    const conteudo =
+        document.getElementById(
+            "conteudoModal"
+        );
+
+
+    const ingredientes =
+        receita.ingredientes
+            .map(item => `<li>${item}</li>`)
+            .join("");
+
+
+    conteudo.innerHTML = `
+
+        <h2>
+            🍰 ${receita.nome}
+        </h2>
+
+
+        <p>
+            ${receita.descricao}
+        </p>
+
+
+        <h3>
+            🛒 Ingredientes
+        </h3>
+
+
+        <ul>
+            ${ingredientes}
+        </ul>
+
+
+        <h3>
+            👨‍🍳 Modo de preparo
+        </h3>
+
+
+        <p>
+            ${receita.preparo}
+        </p>
+
+    `;
+
+
+    modal.classList.add("active");
+}
+
+
+
+/* ==========================================
+   FECHAR MODAL
+========================================== */
+
+function fecharModal() {
+
+    document
+        .getElementById("modal")
+        .classList.remove("active");
+
+}
+
+
+document
+    .getElementById("modal")
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                fecharModal();
+
+            }
+
+        }
+    );
+
+
+
+/* ==========================================
+   FILTRAR CATEGORIA
+========================================== */
+
+function filtrarCategoria(
+    categoria,
+    botao
+) {
+
+    document
+        .querySelectorAll(".categoria-btn")
+        .forEach(btn =>
+            btn.classList.remove("active")
+        );
+
+
+    botao.classList.add("active");
+
+
+    if (categoria === "todos") {
+
+        carregarReceitas();
+
+        return;
+    }
+
+
+    const filtradas =
+        receitas.filter(
+            receita =>
+                receita.categoria === categoria
+        );
+
+
+    carregarReceitas(filtradas);
+}
+
+
+
+/* ==========================================
+   PESQUISA
+========================================== */
+
+document
+    .getElementById("pesquisa")
+    .addEventListener(
+        "input",
+        function() {
+
+            const termo =
+                this.value
+                    .toLowerCase()
+                    .trim();
+
+
+            if (!termo) {
+
+                carregarReceitas();
+
+                return;
+            }
+
+
+            const resultados =
+                receitas.filter(
+                    receita =>
+                        receita.nome
+                            .toLowerCase()
+                            .includes(termo)
+                        ||
+                        receita.descricao
+                            .toLowerCase()
+                            .includes(termo)
+                );
+
+
+            carregarReceitas(resultados);
+
+        }
+    );
+
+
+
+/* ==========================================
+   MODO ESCURO
+========================================== */
+
+const temaBtn =
+    document.getElementById(
+        "temaBtn"
+    );
+
+
+function atualizarTema() {
+
+    const escuro =
+        document.body.classList
+            .contains("dark");
+
+
+    if (escuro) {
+
+        document.body.classList
+            .remove("dark");
+
+        temaBtn.textContent = "🌙";
+
+        localStorage.setItem(
+            "tema",
+            "claro"
+        );
+
+    } else {
+
+        document.body.classList
+            .add("dark");
+
+        temaBtn.textContent = "☀️";
+
+        localStorage.setItem(
+            "tema",
+            "escuro"
+        );
+
+    }
+
+}
+
+
+temaBtn.addEventListener(
+    "click",
+    atualizarTema
+);
+
+
+
+/* ==========================================
+   RECUPERAR TEMA
+========================================== */
+
+if (
+    localStorage.getItem("tema")
+    === "escuro"
+) {
+
+    document.body.classList
+        .add("dark");
+
+    temaBtn.textContent = "☀️";
+}
+
+
+
+/* ==========================================
+   NEWSLETTER
+========================================== */
+
+document
+    .getElementById("newsletterForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                document.getElementById(
+                    "email"
+                ).value;
+
+
+            alert(
+                `🎉 Obrigado! O e-mail ${email} foi cadastrado com sucesso.`
+            );
+
+
+            this.reset();
+
+        }
+    );
+
+
+
+/* ==========================================
+   INICIAR
+========================================== */
+
+carregarReceitas();
+
+</script>
+
+</body>
+</html>
