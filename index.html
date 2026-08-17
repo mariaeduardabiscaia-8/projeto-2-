@@ -1,1663 +1,2565 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>🍰 Bolos & Sabores</title>
+    <meta
+        name="description"
+        content="Bolos & Sabores - receitas deliciosas de bolos e sobremesas."
+    >
 
-<style>
+    <title>🍰 Bolos & Sabores</title>
 
-    /* ==============================
-       VARIÁVEIS
-    ============================== */
 
-    :root {
-        --bg: #fff8f5;
-        --card: #ffffff;
-        --text: #3b2f2f;
-        --text-secondary: #6b5b5b;
+    <style>
 
-        --primary: #e85d75;
-        --primary-hover: #d6455d;
+        /* =====================================================
+           VARIÁVEIS
+        ===================================================== */
 
-        --border: #eadbd6;
+        :root {
 
-        --recipe-bg: #fff1e8;
+            --bg: #fff8f5;
+            --card: #ffffff;
+            --text: #3b2f2f;
+            --text-secondary: #6b5b5b;
 
-        --header: #ffffff;
+            --primary: #e85d75;
+            --primary-hover: #d6455d;
 
-        --shadow:
-            0 8px 25px rgba(80, 40, 40, 0.08);
-    }
+            --border: #eadbd6;
+            --recipe-bg: #fff1e8;
+            --header: #ffffff;
 
+            --shadow:
+                0 8px 25px rgba(80, 40, 40, 0.08);
 
-    /* ==============================
-       MODO ESCURO
-    ============================== */
-
-    body.dark {
-        --bg: #121212;
-        --card: #1e1e1e;
-        --text: #f5eeee;
-        --text-secondary: #c5b8b8;
-
-        --primary: #ff7189;
-        --primary-hover: #ff526f;
-
-        --border: #383030;
-
-        --recipe-bg: #2a2020;
-
-        --header: #1a1a1a;
-
-        --shadow:
-            0 8px 25px rgba(0, 0, 0, 0.35);
-    }
-
-
-    /* ==============================
-       RESET
-    ============================== */
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    html {
-        scroll-behavior: smooth;
-    }
-
-    body {
-        background: var(--bg);
-        color: var(--text);
-
-        font-family:
-            Georgia,
-            "Times New Roman",
-            serif;
-
-        line-height: 1.7;
-
-        transition:
-            background 0.3s,
-            color 0.3s;
-    }
-
-
-    /* ==============================
-       HEADER
-    ============================== */
-
-    header {
-        background: var(--header);
-
-        border-bottom:
-            1px solid var(--border);
-
-        position: sticky;
-        top: 0;
-
-        z-index: 1000;
-
-        transition: 0.3s;
-    }
-
-    .header-container {
-        max-width: 1100px;
-
-        margin: auto;
-
-        padding: 15px 20px;
-
-        display: flex;
-
-        justify-content: space-between;
-
-        align-items: center;
-    }
-
-
-    .logo {
-        font-size: 1.6rem;
-
-        font-weight: bold;
-
-        color: var(--text);
-
-        text-decoration: none;
-    }
-
-    .logo span {
-        color: var(--primary);
-    }
-
-
-    nav {
-        display: flex;
-
-        align-items: center;
-
-        gap: 20px;
-    }
-
-    nav a {
-        color: var(--text-secondary);
-
-        text-decoration: none;
-
-        font-family: Arial, sans-serif;
-
-        font-size: 0.95rem;
-
-        transition: 0.2s;
-    }
-
-    nav a:hover {
-        color: var(--primary);
-    }
-
-
-    /* ==============================
-       BOTÃO TEMA
-    ============================== */
-
-    #temaBtn {
-        width: 42px;
-        height: 42px;
-
-        border-radius: 50%;
-
-        border: 1px solid var(--border);
-
-        background: var(--card);
-
-        color: var(--text);
-
-        cursor: pointer;
-
-        font-size: 1.2rem;
-
-        transition: 0.3s;
-    }
-
-    #temaBtn:hover {
-        background: var(--primary);
-
-        color: white;
-
-        transform:
-            rotate(15deg)
-            scale(1.08);
-    }
-
-
-    /* ==============================
-       HERO
-    ============================== */
-
-    .hero {
-        min-height: 430px;
-
-        display: flex;
-
-        align-items: center;
-
-        justify-content: center;
-
-        text-align: center;
-
-        color: white;
-
-        padding: 60px 20px;
-
-        background:
-            linear-gradient(
-                rgba(0,0,0,0.55),
-                rgba(0,0,0,0.55)
-            ),
-            url("https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=80")
-            center / cover;
-    }
-
-
-    .hero-content {
-        max-width: 750px;
-    }
-
-
-    .hero h1 {
-        font-size: 3.2rem;
-
-        margin-bottom: 15px;
-    }
-
-    .hero p {
-        font-size: 1.15rem;
-
-        margin-bottom: 30px;
-
-        font-family: Arial, sans-serif;
-    }
-
-
-    /* ==============================
-       PESQUISA
-    ============================== */
-
-    .search {
-        max-width: 550px;
-
-        margin: auto;
-    }
-
-    #pesquisa {
-        width: 100%;
-
-        padding: 16px 22px;
-
-        border: none;
-
-        border-radius: 30px;
-
-        outline: none;
-
-        font-size: 1rem;
-
-        background: white;
-
-        color: #333;
-
-        box-shadow:
-            0 8px 25px
-            rgba(0,0,0,0.2);
-    }
-
-
-    /* ==============================
-       CATEGORIAS
-    ============================== */
-
-    .categorias {
-        max-width: 1100px;
-
-        margin: 35px auto 0;
-
-        padding: 0 20px;
-
-        display: flex;
-
-        justify-content: center;
-
-        flex-wrap: wrap;
-
-        gap: 10px;
-    }
-
-    .categoria-btn {
-        padding: 10px 18px;
-
-        border-radius: 25px;
-
-        border: 1px solid var(--border);
-
-        background: var(--card);
-
-        color: var(--text);
-
-        cursor: pointer;
-
-        font-family: Arial, sans-serif;
-
-        transition: 0.2s;
-    }
-
-    .categoria-btn:hover,
-    .categoria-btn.active {
-        background: var(--primary);
-
-        color: white;
-
-        border-color: var(--primary);
-
-        transform: translateY(-2px);
-    }
-
-
-    /* ==============================
-       CONTEÚDO
-    ============================== */
-
-    main {
-        max-width: 1100px;
-
-        margin: 40px auto;
-
-        padding: 0 20px;
-    }
-
-
-    .titulo-secao {
-        text-align: center;
-
-        margin-bottom: 30px;
-    }
-
-    .titulo-secao h2 {
-        font-size: 2rem;
-
-        margin-bottom: 5px;
-    }
-
-    .titulo-secao p {
-        color: var(--text-secondary);
-    }
-
-
-    /* ==============================
-       GRID
-    ============================== */
-
-    .receitas {
-        display: grid;
-
-        grid-template-columns:
-            repeat(3, 1fr);
-
-        gap: 25px;
-    }
-
-
-    /* ==============================
-       CARD
-    ============================== */
-
-    .card {
-        background: var(--card);
-
-        border:
-            1px solid var(--border);
-
-        border-radius: 16px;
-
-        overflow: hidden;
-
-        box-shadow: var(--shadow);
-
-        transition:
-            transform 0.25s,
-            box-shadow 0.25s;
-    }
-
-    .card:hover {
-        transform:
-            translateY(-7px);
-
-        box-shadow:
-            0 15px 35px
-            rgba(80,40,40,0.15);
-    }
-
-
-    .card-img {
-        width: 100%;
-
-        height: 220px;
-
-        object-fit: cover;
-    }
-
-
-    .card-content {
-        padding: 22px;
-    }
-
-
-    .categoria {
-        color: var(--primary);
-
-        text-transform: uppercase;
-
-        font-size: 0.75rem;
-
-        font-family: Arial, sans-serif;
-
-        font-weight: bold;
-
-        letter-spacing: 1px;
-    }
-
-
-    .card h3 {
-        font-size: 1.4rem;
-
-        margin:
-            8px 0 10px;
-    }
-
-
-    .card p {
-        color: var(--text-secondary);
-
-        margin-bottom: 18px;
-    }
-
-
-    /* ==============================
-       AÇÕES
-    ============================== */
-
-    .acoes {
-        display: flex;
-
-        align-items: center;
-
-        justify-content: space-between;
-
-        gap: 10px;
-
-        padding-top: 15px;
-
-        border-top:
-            1px solid var(--border);
-    }
-
-
-    .like-btn,
-    .ver-btn {
-        border: none;
-
-        cursor: pointer;
-
-        font-family: Arial, sans-serif;
-
-        transition: 0.2s;
-    }
-
-
-    .like-btn {
-        background: transparent;
-
-        color: var(--text);
-
-        display: flex;
-
-        align-items: center;
-
-        gap: 6px;
-
-        font-size: 1rem;
-    }
-
-
-    .like-btn:hover {
-        color: var(--primary);
-
-        transform: scale(1.05);
-    }
-
-
-    .like-btn.liked {
-        color: #e63956;
-    }
-
-
-    .ver-btn {
-        background: var(--primary);
-
-        color: white;
-
-        padding:
-            9px 15px;
-
-        border-radius: 20px;
-
-        font-weight: bold;
-    }
-
-
-    .ver-btn:hover {
-        background:
-            var(--primary-hover);
-
-        transform:
-            translateY(-2px);
-    }
-
-
-    /* ==============================
-       MODAL
-    ============================== */
-
-    .modal {
-        display: none;
-
-        position: fixed;
-
-        inset: 0;
-
-        background:
-            rgba(0,0,0,0.7);
-
-        z-index: 2000;
-
-        align-items: center;
-
-        justify-content: center;
-
-        padding: 20px;
-    }
-
-
-    .modal.active {
-        display: flex;
-    }
-
-
-    .modal-content {
-        background: var(--card);
-
-        color: var(--text);
-
-        max-width: 650px;
-
-        width: 100%;
-
-        max-height: 90vh;
-
-        overflow-y: auto;
-
-        border-radius: 16px;
-
-        padding: 30px;
-
-        position: relative;
-    }
-
-
-    .fechar {
-        position: absolute;
-
-        top: 15px;
-
-        right: 20px;
-
-        border: none;
-
-        background: transparent;
-
-        color: var(--text);
-
-        font-size: 1.8rem;
-
-        cursor: pointer;
-    }
-
-
-    .modal-content h2 {
-        color: var(--primary);
-
-        margin-bottom: 20px;
-    }
-
-
-    .modal-content h3 {
-        margin:
-            20px 0 8px;
-    }
-
-
-    .modal-content ul {
-        margin-left: 25px;
-    }
-
-
-    /* ==============================
-       NEWSLETTER
-    ============================== */
-
-    .newsletter {
-        margin-top: 60px;
-
-        padding: 50px 20px;
-
-        background: var(--recipe-bg);
-
-        text-align: center;
-    }
-
-
-    .newsletter h2 {
-        margin-bottom: 10px;
-    }
-
-
-    .newsletter p {
-        color: var(--text-secondary);
-
-        margin-bottom: 20px;
-    }
-
-
-    .newsletter-form {
-        max-width: 500px;
-
-        margin: auto;
-
-        display: flex;
-
-        gap: 10px;
-    }
-
-
-    .newsletter-form input {
-        flex: 1;
-
-        padding: 13px;
-
-        border:
-            1px solid var(--border);
-
-        border-radius: 8px;
-
-        outline: none;
-
-        background: var(--card);
-
-        color: var(--text);
-    }
-
-
-    .newsletter-form button {
-        border: none;
-
-        background: var(--primary);
-
-        color: white;
-
-        padding:
-            0 20px;
-
-        border-radius: 8px;
-
-        cursor: pointer;
-
-        font-weight: bold;
-    }
-
-
-    .newsletter-form button:hover {
-        background:
-            var(--primary-hover);
-    }
-
-
-    /* ==============================
-       FOOTER
-    ============================== */
-
-    footer {
-        background: #211b1b;
-
-        color: #cdbebe;
-
-        text-align: center;
-
-        padding: 30px 20px;
-
-        margin-top: 50px;
-    }
-
-
-    /* ==============================
-       MENSAGEM
-    ============================== */
-
-    .sem-resultados {
-        grid-column: 1 / -1;
-
-        text-align: center;
-
-        padding: 50px;
-
-        background: var(--card);
-
-        border-radius: 15px;
-
-        border:
-            1px solid var(--border);
-    }
-
-
-    /* ==============================
-       RESPONSIVO
-    ============================== */
-
-    @media (max-width: 850px) {
-
-        .receitas {
-            grid-template-columns:
-                repeat(2, 1fr);
+            --shadow-hover:
+                0 15px 35px rgba(80, 40, 40, 0.15);
         }
 
-        .hero h1 {
-            font-size: 2.4rem;
+
+        /* =====================================================
+           MODO ESCURO
+        ===================================================== */
+
+        body.dark {
+
+            --bg: #121212;
+            --card: #1e1e1e;
+            --text: #f5eeee;
+            --text-secondary: #c5b8b8;
+
+            --primary: #ff7189;
+            --primary-hover: #ff526f;
+
+            --border: #383030;
+            --recipe-bg: #2a2020;
+            --header: #1a1a1a;
+
+            --shadow:
+                0 8px 25px rgba(0, 0, 0, 0.35);
+
+            --shadow-hover:
+                0 15px 40px rgba(0, 0, 0, 0.5);
         }
-    }
 
 
-    @media (max-width: 600px) {
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+
+        body {
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            line-height: 1.7;
+
+            min-height: 100vh;
+
+            transition:
+                background 0.3s ease,
+                color 0.3s ease;
+        }
+
+
+        ::selection {
+
+            background: var(--primary);
+            color: white;
+        }
+
+
+        /* =====================================================
+           SCROLLBAR
+        ===================================================== */
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+
+            background: var(--primary);
+
+            border-radius: 20px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--primary-hover);
+        }
+
+
+        /* =====================================================
+           HEADER
+        ===================================================== */
+
+        header {
+
+            background: var(--header);
+
+            border-bottom:
+                1px solid var(--border);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            transition:
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
 
         .header-container {
-            flex-direction: column;
 
-            gap: 15px;
+            max-width: 1100px;
+
+            margin: auto;
+
+            padding: 15px 20px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 20px;
         }
+
+
+        /* =====================================================
+           LOGO
+        ===================================================== */
+
+        .logo {
+
+            font-size: 1.6rem;
+
+            font-weight: bold;
+
+            color: var(--text);
+
+            text-decoration: none;
+
+            white-space: nowrap;
+        }
+
+
+        .logo span {
+            color: var(--primary);
+        }
+
+
+        /* =====================================================
+           MENU
+        ===================================================== */
 
         nav {
-            flex-wrap: wrap;
+
+            display: flex;
+
+            align-items: center;
 
             justify-content: center;
+
+            gap: 20px;
+
+            flex-wrap: wrap;
         }
 
-        .receitas {
-            grid-template-columns: 1fr;
+
+        nav a {
+
+            color: var(--text-secondary);
+
+            text-decoration: none;
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.95rem;
+
+            position: relative;
+
+            padding: 5px 0;
+
+            transition: color 0.2s ease;
         }
+
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+
+        nav a::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 50%;
+
+            bottom: 0;
+
+            width: 0;
+
+            height: 2px;
+
+            background: var(--primary);
+
+            transition:
+                width 0.25s ease,
+                left 0.25s ease;
+        }
+
+
+        nav a:hover::after {
+
+            width: 100%;
+
+            left: 0;
+        }
+
+
+        /* =====================================================
+           BOTÕES DO HEADER
+        ===================================================== */
+
+        .header-buttons {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+        }
+
+
+        #temaBtn,
+        #acessibilidadeBtn {
+
+            width: 42px;
+
+            height: 42px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid var(--border);
+
+            background: var(--card);
+
+            color: var(--text);
+
+            cursor: pointer;
+
+            font-size: 1.15rem;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            transition: all 0.25s ease;
+        }
+
+
+        #temaBtn:hover,
+        #acessibilidadeBtn:hover {
+
+            background: var(--primary);
+
+            color: white;
+
+            border-color: var(--primary);
+
+            transform: scale(1.08);
+        }
+
+
+        /* =====================================================
+           PAINEL DE ACESSIBILIDADE
+        ===================================================== */
+
+        .acessibilidade-painel {
+
+            position: fixed;
+
+            top: 80px;
+
+            right: 20px;
+
+            width: 280px;
+
+            background: var(--card);
+
+            color: var(--text);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 16px;
+
+            padding: 20px;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.2);
+
+            z-index: 3000;
+
+            display: none;
+        }
+
+
+        .acessibilidade-painel.active {
+            display: block;
+        }
+
+
+        .acessibilidade-painel h2 {
+
+            font-size: 1.2rem;
+
+            margin-bottom: 15px;
+
+            color: var(--primary);
+        }
+
+
+        .acessibilidade-painel p {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.9rem;
+
+            color: var(--text-secondary);
+
+            margin-bottom: 15px;
+        }
+
+
+        .acessibilidade-opcoes {
+
+            display: grid;
+
+            gap: 10px;
+        }
+
+
+        .acessibilidade-opcoes button {
+
+            width: 100%;
+
+            padding: 10px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 8px;
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            cursor: pointer;
+
+            font-family: Arial, sans-serif;
+
+            transition: 0.2s ease;
+        }
+
+
+        .acessibilidade-opcoes button:hover {
+
+            background: var(--primary);
+
+            color: white;
+
+            border-color: var(--primary);
+        }
+
+
+        /* =====================================================
+           ACESSIBILIDADE - FONTE MAIOR
+        ===================================================== */
+
+        body.fonte-grande {
+            font-size: 1.15em;
+        }
+
+
+        body.alto-contraste {
+
+            --bg: #000000;
+
+            --card: #000000;
+
+            --text: #ffffff;
+
+            --text-secondary: #ffffff;
+
+            --border: #ffffff;
+
+            --primary: #ffff00;
+
+            --primary-hover: #ffff00;
+
+            --recipe-bg: #000000;
+
+            --header: #000000;
+        }
+
+
+        body.alto-contraste button,
+        body.alto-contraste input {
+
+            border-color: white !important;
+        }
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .hero {
+
+            min-height: 430px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: white;
+
+            padding: 60px 20px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background:
+
+                linear-gradient(
+                    rgba(0,0,0,0.58),
+                    rgba(0,0,0,0.58)
+                ),
+
+                url("https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=1600&q=80")
+                center / cover no-repeat;
+        }
+
+
+        .hero-content {
+
+            max-width: 750px;
+
+            position: relative;
+
+            z-index: 2;
+
+            animation: aparecer 0.8s ease;
+        }
+
 
         .hero h1 {
-            font-size: 2rem;
+
+            font-size: 3.2rem;
+
+            margin-bottom: 15px;
+
+            text-shadow:
+                0 3px 10px rgba(0,0,0,0.3);
         }
+
+
+        .hero p {
+
+            font-size: 1.15rem;
+
+            margin-bottom: 30px;
+
+            font-family: Arial, sans-serif;
+
+            opacity: 0.95;
+        }
+
+
+        @keyframes aparecer {
+
+            from {
+
+                opacity: 0;
+
+                transform: translateY(25px);
+            }
+
+            to {
+
+                opacity: 1;
+
+                transform: translateY(0);
+            }
+        }
+
+
+        /* =====================================================
+           PESQUISA
+        ===================================================== */
+
+        .search {
+
+            max-width: 550px;
+
+            margin: auto;
+        }
+
+
+        #pesquisa {
+
+            width: 100%;
+
+            padding: 16px 22px;
+
+            border: 2px solid transparent;
+
+            border-radius: 30px;
+
+            outline: none;
+
+            font-size: 1rem;
+
+            background: white;
+
+            color: #333;
+
+            font-family: Arial, sans-serif;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.2);
+
+            transition: 0.3s ease;
+        }
+
+
+        #pesquisa:focus {
+
+            border-color: var(--primary);
+
+            transform: scale(1.02);
+        }
+
+
+        /* =====================================================
+           CATEGORIAS
+        ===================================================== */
+
+        .categorias {
+
+            max-width: 1100px;
+
+            margin: 35px auto 0;
+
+            padding: 0 20px;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+
+        .categoria-btn {
+
+            padding: 10px 18px;
+
+            border-radius: 25px;
+
+            border:
+                1px solid var(--border);
+
+            background: var(--card);
+
+            color: var(--text);
+
+            cursor: pointer;
+
+            font-family: Arial, sans-serif;
+
+            transition: 0.2s ease;
+        }
+
+
+        .categoria-btn:hover,
+        .categoria-btn.active {
+
+            background: var(--primary);
+
+            color: white;
+
+            border-color: var(--primary);
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           MAIN
+        ===================================================== */
+
+        main {
+
+            max-width: 1100px;
+
+            margin: 40px auto;
+
+            padding: 0 20px;
+        }
+
+
+        .titulo-secao {
+
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .titulo-secao h2 {
+
+            font-size: 2rem;
+
+            margin-bottom: 5px;
+        }
+
+
+        .titulo-secao p {
+
+            color: var(--text-secondary);
+        }
+
+
+        /* =====================================================
+           RECEITAS
+        ===================================================== */
+
+        .receitas {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 25px;
+        }
+
+
+        .card {
+
+            background: var(--card);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            box-shadow: var(--shadow);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .card:hover {
+
+            transform: translateY(-7px);
+
+            box-shadow: var(--shadow-hover);
+        }
+
+
+        .card-img {
+
+            width: 100%;
+
+            height: 220px;
+
+            object-fit: cover;
+
+            display: block;
+        }
+
+
+        .card-content {
+
+            padding: 22px;
+        }
+
+
+        .categoria {
+
+            color: var(--primary);
+
+            text-transform: uppercase;
+
+            font-size: 0.75rem;
+
+            font-family: Arial, sans-serif;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        .card h3 {
+
+            font-size: 1.4rem;
+
+            margin: 8px 0 10px;
+
+            line-height: 1.3;
+        }
+
+
+        .card p {
+
+            color: var(--text-secondary);
+
+            margin-bottom: 18px;
+        }
+
+
+        /* =====================================================
+           AÇÕES
+        ===================================================== */
+
+        .acoes {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            padding-top: 15px;
+
+            border-top:
+                1px solid var(--border);
+        }
+
+
+        .like-btn {
+
+            border: none;
+
+            cursor: pointer;
+
+            background: transparent;
+
+            color: var(--text);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            font-size: 1rem;
+
+            padding: 8px;
+
+            border-radius: 8px;
+        }
+
+
+        .like-btn:hover {
+
+            color: var(--primary);
+
+            background:
+                rgba(232,93,117,0.08);
+        }
+
+
+        .like-btn.liked {
+
+            color: #e63956;
+        }
+
+
+        .ver-btn {
+
+            border: none;
+
+            cursor: pointer;
+
+            background: var(--primary);
+
+            color: white;
+
+            padding: 9px 15px;
+
+            border-radius: 20px;
+
+            font-family: Arial, sans-serif;
+
+            font-weight: bold;
+
+            transition: 0.2s ease;
+        }
+
+
+        .ver-btn:hover {
+
+            background: var(--primary-hover);
+
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================================
+           SEM RESULTADOS
+        ===================================================== */
+
+        .sem-resultados {
+
+            grid-column: 1 / -1;
+
+            text-align: center;
+
+            padding: 50px;
+
+            background: var(--card);
+
+            border-radius: 15px;
+
+            border:
+                1px solid var(--border);
+
+            box-shadow: var(--shadow);
+        }
+
+
+        .sem-resultados p {
+
+            color: var(--text-secondary);
+        }
+
+
+        /* =====================================================
+           SEÇÃO DO VÍDEO
+        ===================================================== */
+
+        .video-section {
+
+            max-width: 1100px;
+
+            margin: 60px auto;
+
+            padding: 0 20px;
+
+            text-align: center;
+        }
+
+
+        .video-content {
+
+            background: var(--card);
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            box-shadow: var(--shadow);
+        }
+
+
+        .video-content h2 {
+
+            color: var(--primary);
+
+            font-size: 2rem;
+
+            margin-bottom: 10px;
+        }
+
+
+        .video-content p {
+
+            color: var(--text-secondary);
+
+            margin-bottom: 25px;
+
+            font-family: Arial, sans-serif;
+        }
+
+
+        /* =====================================================
+           YOUTUBE
+        ===================================================== */
+
+        .video-container {
+
+            position: relative;
+
+            width: 100%;
+
+            max-width: 850px;
+
+            margin: auto;
+
+            aspect-ratio: 16 / 9;
+
+            overflow: hidden;
+
+            border-radius: 15px;
+
+            background: #000;
+
+            box-shadow:
+                0 10px 30px rgba(0,0,0,0.25);
+        }
+
+
+        .video-container iframe {
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            border: none;
+        }
+
+
+        /* =====================================================
+           NEWSLETTER
+        ===================================================== */
+
+        .newsletter {
+
+            margin-top: 60px;
+
+            padding: 50px 20px;
+
+            background: var(--recipe-bg);
+
+            text-align: center;
+
+            border-top:
+                1px solid var(--border);
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+
+        .newsletter h2 {
+
+            margin-bottom: 10px;
+        }
+
+
+        .newsletter p {
+
+            color: var(--text-secondary);
+
+            margin-bottom: 20px;
+        }
+
 
         .newsletter-form {
-            flex-direction: column;
+
+            max-width: 500px;
+
+            margin: auto;
+
+            display: flex;
+
+            gap: 10px;
         }
+
+
+        .newsletter-form input {
+
+            flex: 1;
+
+            padding: 13px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 8px;
+
+            outline: none;
+
+            background: var(--card);
+
+            color: var(--text);
+        }
+
 
         .newsletter-form button {
-            padding: 13px;
-        }
-    }
 
-</style>
-```
+            border: none;
+
+            background: var(--primary);
+
+            color: white;
+
+            padding: 0 20px;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            font-weight: bold;
+        }
+
+
+        .newsletter-form button:hover {
+
+            background: var(--primary-hover);
+        }
+
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        .modal {
+
+            display: none;
+
+            position: fixed;
+
+            inset: 0;
+
+            background: rgba(0,0,0,0.7);
+
+            z-index: 2000;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 20px;
+
+            backdrop-filter: blur(4px);
+        }
+
+
+        .modal.active {
+            display: flex;
+        }
+
+
+        .modal-content {
+
+            background: var(--card);
+
+            color: var(--text);
+
+            max-width: 650px;
+
+            width: 100%;
+
+            max-height: 90vh;
+
+            overflow-y: auto;
+
+            border-radius: 16px;
+
+            padding: 30px;
+
+            position: relative;
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,0.3);
+        }
+
+
+        .fechar {
+
+            position: absolute;
+
+            top: 15px;
+
+            right: 20px;
+
+            width: 38px;
+
+            height: 38px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: transparent;
+
+            color: var(--text);
+
+            font-size: 1.8rem;
+
+            cursor: pointer;
+        }
+
+
+        .fechar:hover {
+
+            background: var(--primary);
+
+            color: white;
+        }
+
+
+        .modal-content h2 {
+
+            color: var(--primary);
+
+            margin-bottom: 20px;
+
+            padding-right: 30px;
+        }
+
+
+        .modal-content h3 {
+
+            margin: 20px 0 8px;
+        }
+
+
+        .modal-content p,
+        .modal-content li {
+
+            color: var(--text-secondary);
+        }
+
+
+        .modal-content ul {
+
+            margin-left: 25px;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        footer {
+
+            background: #211b1b;
+
+            color: #cdbebe;
+
+            text-align: center;
+
+            padding: 30px 20px;
+
+            margin-top: 50px;
+        }
+
+
+        footer p {
+
+            font-family: Arial, sans-serif;
+
+            font-size: 0.9rem;
+        }
+
+
+        /* =====================================================
+           FOCO ACESSÍVEL
+        ===================================================== */
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        iframe:focus-visible {
+
+            outline:
+                3px solid var(--primary);
+
+            outline-offset: 3px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVO
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .receitas {
+
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+
+            .header-container {
+
+                flex-wrap: wrap;
+
+                justify-content: center;
+            }
+
+
+            .hero h1 {
+
+                font-size: 2.4rem;
+            }
+        }
+
+
+        @media (max-width: 600px) {
+
+            .header-container {
+
+                flex-direction: column;
+
+                gap: 12px;
+            }
+
+
+            nav {
+
+                gap: 12px;
+            }
+
+
+            .receitas {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .hero {
+
+                min-height: 380px;
+
+                padding: 50px 15px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 2rem;
+            }
+
+
+            .hero p {
+
+                font-size: 1rem;
+            }
+
+
+            main {
+
+                padding: 0 15px;
+            }
+
+
+            .titulo-secao h2 {
+
+                font-size: 1.7rem;
+            }
+
+
+            .acoes {
+
+                flex-wrap: wrap;
+            }
+
+
+            .like-btn,
+            .ver-btn {
+
+                flex: 1;
+
+                justify-content: center;
+            }
+
+
+            .newsletter-form {
+
+                flex-direction: column;
+            }
+
+
+            .newsletter-form button {
+
+                padding: 13px;
+            }
+
+
+            .video-section {
+
+                margin: 40px auto;
+
+                padding: 0 15px;
+            }
+
+
+            .video-content {
+
+                padding: 20px;
+            }
+
+
+            .video-content h2 {
+
+                font-size: 1.5rem;
+            }
+
+
+            .video-container {
+
+                border-radius: 10px;
+            }
+
+
+            .acessibilidade-painel {
+
+                right: 10px;
+
+                left: 10px;
+
+                width: auto;
+            }
+        }
+
+
+        @media (max-width: 400px) {
+
+            .logo {
+
+                font-size: 1.3rem;
+            }
+
+
+            nav a {
+
+                font-size: 0.85rem;
+            }
+
+
+            #temaBtn,
+            #acessibilidadeBtn {
+
+                width: 38px;
+
+                height: 38px;
+            }
+
+
+            .hero h1 {
+
+                font-size: 1.7rem;
+            }
+
+
+            .card h3 {
+
+                font-size: 1.25rem;
+            }
+
+
+            .acoes {
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .like-btn,
+            .ver-btn {
+
+                width: 100%;
+            }
+        }
+
+
+        /* =====================================================
+           REDUZIR MOVIMENTO
+        ===================================================== */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+
+                animation-duration: 0.01ms !important;
+
+                animation-iteration-count: 1 !important;
+
+                transition-duration: 0.01ms !important;
+
+                scroll-behavior: auto !important;
+            }
+        }
+
+    </style>
 
 </head>
 
+
 <body>
 
-<!-- =================================
-     CABEÇALHO
-================================= -->
 
-<header>
+    <!-- =====================================================
+         HEADER
+    ===================================================== -->
 
-```
-<div class="header-container">
+    <header>
 
-    <a href="#" class="logo">
-        🍰 Bolos<span>&Sabores</span>
-    </a>
+        <div class="header-container">
+
+            <a href="#" class="logo">
+                🍰 Bolos <span>&</span> Sabores
+            </a>
 
 
-    <nav>
+            <nav aria-label="Menu principal">
 
-        <a href="#inicio">
-            Início
-        </a>
+                <a href="#inicio">
+                    Início
+                </a>
 
-        <a href="#receitas">
-            Receitas
-        </a>
+                <a href="#receitas">
+                    Receitas
+                </a>
 
-        <a href="#newsletter">
-            Contato
-        </a>
+                <a href="#video">
+                    Vídeo
+                </a>
+
+                <a href="#newsletter">
+                    Newsletter
+                </a>
+
+            </nav>
+
+
+            <div class="header-buttons">
+
+                <button
+                    id="acessibilidadeBtn"
+                    aria-label="Abrir opções de acessibilidade"
+                    title="Acessibilidade"
+                >
+                    ♿
+                </button>
+
+
+                <button
+                    id="temaBtn"
+                    aria-label="Alternar modo escuro"
+                    title="Modo escuro"
+                >
+                    🌙
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         PAINEL DE ACESSIBILIDADE
+    ===================================================== -->
+
+    <aside
+        id="acessibilidadePainel"
+        class="acessibilidade-painel"
+        aria-label="Opções de acessibilidade"
+    >
+
+        <h2>
+            ♿ Acessibilidade
+        </h2>
+
+        <p>
+            Escolha uma opção para facilitar a navegação.
+        </p>
+
+
+        <div class="acessibilidade-opcoes">
+
+            <button id="aumentarFonte">
+                🔎 Aumentar fonte
+            </button>
+
+
+            <button id="diminuirFonte">
+                🔍 Diminuir fonte
+            </button>
+
+
+            <button id="contrasteBtn">
+                ◐ Alto contraste
+            </button>
+
+
+            <button id="resetAcessibilidade">
+                ↺ Restaurar acessibilidade
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         HERO
+    ===================================================== -->
+
+    <section
+        class="hero"
+        id="inicio"
+        aria-label="Apresentação do site"
+    >
+
+        <div class="hero-content">
+
+            <h1>
+                Bolos feitos com carinho 🍰
+            </h1>
+
+            <p>
+                Encontre receitas deliciosas, fáceis e perfeitas
+                para qualquer momento.
+            </p>
+
+
+            <div class="search">
+
+                <label
+                    for="pesquisa"
+                    class="sr-only"
+                ></label>
+
+                <input
+                    type="search"
+                    id="pesquisa"
+                    placeholder="🔎 Pesquise uma receita..."
+                    aria-label="Pesquisar receitas"
+                >
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CATEGORIAS
+    ===================================================== -->
+
+    <div
+        class="categorias"
+        aria-label="Categorias de receitas"
+    >
 
         <button
-            id="temaBtn"
-            title="Alterar tema">
-
-            🌙
-
+            class="categoria-btn active"
+            data-categoria="todos"
+        >
+            Todas
         </button>
 
-    </nav>
+        <button
+            class="categoria-btn"
+            data-categoria="chocolate"
+        >
+            🍫 Chocolate
+        </button>
 
-</div>
-```
+        <button
+            class="categoria-btn"
+            data-categoria="frutas"
+        >
+            🍓 Frutas
+        </button>
 
-</header>
-
-<!-- =================================
-     HERO
-================================= -->
-
-<section
-    class="hero"
-    id="inicio">
-
-```
-<div class="hero-content">
-
-    <h1>
-        🍰 Receitas de Bolo
-    </h1>
-
-    <p>
-        Receitas deliciosas, fáceis e perfeitas
-        para deixar qualquer momento mais doce.
-    </p>
-
-
-    <div class="search">
-
-        <input
-            type="text"
-            id="pesquisa"
-            placeholder="🔎 Procure por bolo de chocolate, cenoura..."
-            autocomplete="off">
+        <button
+            class="categoria-btn"
+            data-categoria="simples"
+        >
+            🧁 Simples
+        </button>
 
     </div>
 
-</div>
-```
 
-</section>
+    <!-- =====================================================
+         CONTEÚDO
+    ===================================================== -->
 
-<!-- =================================
-     CATEGORIAS
-================================= -->
+    <main id="receitas">
 
-<div class="categorias">
+        <div class="titulo-secao">
 
-```
-<button
-    class="categoria-btn active"
-    onclick="filtrarCategoria('todos', this)">
+            <h2>
+                Nossas receitas
+            </h2>
 
-    🍰 Todos
+            <p>
+                Escolha seu bolo favorito e comece a preparar.
+            </p>
 
-</button>
+        </div>
 
 
-<button
-    class="categoria-btn"
-    onclick="filtrarCategoria('chocolate', this)">
+        <section
+            class="receitas"
+            id="listaReceitas"
+            aria-live="polite"
+        >
 
-    🍫 Chocolate
 
-</button>
+            <!-- BOLO CHOCOLATE -->
 
+            <article
+                class="card"
+                data-categoria="chocolate"
+                data-nome="Bolo de Chocolate"
+            >
 
-<button
-    class="categoria-btn"
-    onclick="filtrarCategoria('frutas', this)">
+                <img
+                    class="card-img"
+                    src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80"
+                    alt="Bolo de chocolate decorado"
+                >
 
-    🍓 Frutas
 
-</button>
+                <div class="card-content">
 
+                    <span class="categoria">
+                        Chocolate
+                    </span>
 
-<button
-    class="categoria-btn"
-    onclick="filtrarCategoria('caseiro', this)">
+                    <h3>
+                        Bolo de Chocolate
+                    </h3>
 
-    🏠 Caseiros
+                    <p>
+                        Um bolo fofinho, chocolatudo e perfeito
+                        para acompanhar um café.
+                    </p>
 
-</button>
-```
 
-</div>
+                    <div class="acoes">
 
-<!-- =================================
-     RECEITAS
-================================= -->
+                        <button
+                            class="like-btn"
+                            aria-label="Curtir Bolo de Chocolate"
+                        >
 
-<main id="receitas">
+                            <span>♡</span>
 
-```
-<div class="titulo-secao">
+                            <span class="contador">
+                                0
+                            </span>
 
-    <h2>
-        Nossas Receitas
-    </h2>
+                        </button>
 
-    <p>
-        Escolha seu bolo favorito e mãos à massa!
-    </p>
 
-</div>
+                        <button
+                            class="ver-btn"
+                            data-receita="chocolate"
+                        >
+                            Ver receita
+                        </button>
 
-
-<div
-    class="receitas"
-    id="listaReceitas">
-
-</div>
-```
-
-</main>
-
-<!-- =================================
-     NEWSLETTER
-================================= -->
-
-<section
-    class="newsletter"
-    id="newsletter">
-
-```
-<h2>
-    📩 Receba novas receitas
-</h2>
-
-<p>
-    Cadastre seu e-mail para receber
-    receitas deliciosas.
-</p>
-
-
-<form
-    class="newsletter-form"
-    id="newsletterForm">
-
-    <input
-        type="email"
-        id="email"
-        placeholder="Seu melhor e-mail"
-        required>
-
-    <button type="submit">
-        Inscrever
-    </button>
-
-</form>
-```
-
-</section>
-
-<!-- =================================
-     MODAL
-================================= -->
-
-<div
-    class="modal"
-    id="modal">
-
-```
-<div class="modal-content">
-
-    <button
-        class="fechar"
-        onclick="fecharModal()">
-
-        ×
-
-    </button>
-
-    <div id="conteudoModal"></div>
-
-</div>
-```
-
-</div>
-
-<!-- =================================
-     FOOTER
-================================= -->
-
-<footer>
-
-```
-<p>
-    © 2026 Bolos & Sabores.
-    Feito com ❤️ para quem ama bolo.
-</p>
-```
-
-</footer>
-
-<script>
-
-/* ==========================================
-   DADOS DAS RECEITAS
-========================================== */
-
-const receitas = [
-
-    {
-        id: "chocolate",
-        categoria: "chocolate",
-        nome: "Bolo de Chocolate Fofinho",
-
-        imagem:
-        "https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=800&q=80",
-
-        descricao:
-        "Um bolo de chocolate macio, úmido e muito saboroso.",
-
-        ingredientes: [
-            "2 xícaras de farinha de trigo",
-            "1 xícara de chocolate em pó",
-            "1 xícara de açúcar",
-            "2 ovos",
-            "1 xícara de leite",
-            "1/2 xícara de óleo",
-            "1 colher de fermento"
-        ],
-
-        preparo:
-        "Misture os ingredientes secos. Acrescente os ovos, leite e óleo. Misture bem. Coloque em uma forma untada e asse por aproximadamente 40 minutos a 180°C."
-    },
-
-
-    {
-        id: "cenoura",
-        categoria: "caseiro",
-        nome: "Bolo de Cenoura com Chocolate",
-
-        imagem:
-        "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80",
-
-        descricao:
-        "O clássico bolo de cenoura brasileiro com cobertura de chocolate.",
-
-        ingredientes: [
-            "3 cenouras médias",
-            "3 ovos",
-            "1 xícara de óleo",
-            "2 xícaras de açúcar",
-            "2 e 1/2 xícaras de farinha",
-            "1 colher de fermento",
-            "200g de chocolate para cobertura"
-        ],
-
-        preparo:
-        "Bata a cenoura, os ovos e o óleo no liquidificador. Misture com os ingredientes secos. Asse por cerca de 40 minutos. Depois cubra com chocolate derretido."
-    },
-
-
-    {
-        id: "morango",
-        categoria: "frutas",
-        nome: "Bolo de Morango",
-
-        imagem:
-        "https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=800&q=80",
-
-        descricao:
-        "Um bolo delicado com morangos frescos e muito sabor.",
-
-        ingredientes: [
-            "2 xícaras de farinha",
-            "1 xícara de açúcar",
-            "3 ovos",
-            "1 xícara de leite",
-            "1 colher de fermento",
-            "300g de morangos",
-            "200ml de creme de leite"
-        ],
-
-        preparo:
-        "Prepare a massa misturando os ingredientes. Asse até dourar. Depois de frio, recheie com creme e morangos frescos."
-    },
-
-
-    {
-        id: "coco",
-        categoria: "caseiro",
-        nome: "Bolo de Coco Cremoso",
-
-        imagem:
-        "https://images.unsplash.com/photo-1603532648955-039310d9ed75?auto=format&fit=crop&w=800&q=80",
-
-        descricao:
-        "Um bolo cremoso e aromático perfeito para o café da tarde.",
-
-        ingredientes: [
-            "2 xícaras de farinha",
-            "1 xícara de açúcar",
-            "3 ovos",
-            "200ml de leite de coco",
-            "100g de coco ralado",
-            "1 colher de fermento"
-        ],
-
-        preparo:
-        "Misture todos os ingredientes até obter uma massa homogênea. Coloque em uma forma untada e asse a 180°C por aproximadamente 40 minutos."
-    },
-
-
-    {
-        id: "banana",
-        categoria: "frutas",
-        nome: "Bolo de Banana Caramelizada",
-
-        imagem:
-        "https://images.unsplash.com/photo-1602351447937-745cb720612f?auto=format&fit=crop&w=800&q=80",
-
-        descricao:
-        "Bolo macio de banana com uma deliciosa camada caramelizada.",
-
-        ingredientes: [
-            "4 bananas maduras",
-            "2 xícaras de farinha",
-            "1 xícara de açúcar",
-            "3 ovos",
-            "1/2 xícara de óleo",
-            "1 colher de fermento",
-            "Açúcar para caramelizar"
-        ],
-
-        preparo:
-        "Caramelize o açúcar na forma e coloque as bananas. Prepare a massa e despeje sobre as bananas. Asse por aproximadamente 40 minutos."
-    },
-
-
-    {
-        id: "brigadeiro",
-        categoria: "chocolate",
-        nome: "Bolo Brigadeiro",
-
-        imagem:
-        "https://images.unsplash.com/photo-1575377427642-087cf684f29d?auto=format&fit=crop&w=800&q=80",
-
-        descricao:
-        "Um bolo extremamente chocolatudo coberto com brigadeiro.",
-
-        ingredientes: [
-            "2 xícaras de farinha",
-            "1 xícara de chocolate",
-            "1 xícara de açúcar",
-            "3 ovos",
-            "1 xícara de leite",
-            "1 lata de leite condensado",
-            "2 colheres de chocolate"
-        ],
-
-        preparo:
-        "Prepare a massa de chocolate e asse. Para a cobertura, cozinhe leite condensado com chocolate até engrossar. Cubra o bolo e finalize com granulado."
-    }
-
-];
-
-
-
-/* ==========================================
-   CARREGAR RECEITAS
-========================================== */
-
-function carregarReceitas(lista = receitas) {
-
-    const container =
-        document.getElementById("listaReceitas");
-
-    container.innerHTML = "";
-
-
-    if (lista.length === 0) {
-
-        container.innerHTML = `
-
-            <div class="sem-resultados">
-
-                <h2>
-                    😢 Nenhum bolo encontrado
-                </h2>
-
-                <p>
-                    Tente procurar por outro nome.
-                </p>
-
-            </div>
-
-        `;
-
-        return;
-    }
-
-
-    lista.forEach(receita => {
-
-        const likes =
-            localStorage.getItem(
-                `likes-${receita.id}`
-            ) || 0;
-
-
-        const curtiu =
-            localStorage.getItem(
-                `curtiu-${receita.id}`
-            ) === "true";
-
-
-        const card = document.createElement("article");
-
-        card.className = "card";
-
-
-        card.innerHTML = `
-
-            <img
-                src="${receita.imagem}"
-                alt="${receita.nome}"
-                class="card-img">
-
-
-            <div class="card-content">
-
-                <span class="categoria">
-                    ${receita.categoria}
-                </span>
-
-
-                <h3>
-                    ${receita.nome}
-                </h3>
-
-
-                <p>
-                    ${receita.descricao}
-                </p>
-
-
-                <div class="acoes">
-
-
-                    <button
-                        class="like-btn ${curtiu ? "liked" : ""}"
-                        onclick="darLike('${receita.id}')">
-
-                        <span>
-                            ${curtiu ? "❤️" : "🤍"}
-                        </span>
-
-                        <span id="contador-${receita.id}">
-                            ${likes}
-                        </span>
-
-                        <span>
-                            likes
-                        </span>
-
-                    </button>
-
-
-                    <button
-                        class="ver-btn"
-                        onclick="abrirReceita('${receita.id}')">
-
-                        📖 Ver receita
-
-                    </button>
-
+                    </div>
 
                 </div>
 
+            </article>
+
+
+            <!-- BOLO DE MORANGO -->
+
+            <article
+                class="card"
+                data-categoria="frutas"
+                data-nome="Bolo de Morango"
+            >
+
+                <img
+                    class="card-img"
+                    src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&w=800&q=80"
+                    alt="Bolo decorado com morangos"
+                >
+
+
+                <div class="card-content">
+
+                    <span class="categoria">
+                        Frutas
+                    </span>
+
+                    <h3>
+                        Bolo de Morango
+                    </h3>
+
+                    <p>
+                        Massa leve com creme e morangos frescos.
+                    </p>
+
+
+                    <div class="acoes">
+
+                        <button
+                            class="like-btn"
+                            aria-label="Curtir Bolo de Morango"
+                        >
+
+                            <span>♡</span>
+
+                            <span class="contador">
+                                0
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="ver-btn"
+                            data-receita="morango"
+                        >
+                            Ver receita
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- BOLO SIMPLES -->
+
+            <article
+                class="card"
+                data-categoria="simples"
+                data-nome="Bolo Caseiro"
+            >
+
+                <img
+                    class="card-img"
+                    src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=800&q=80"
+                    alt="Bolo caseiro"
+                >
+
+
+                <div class="card-content">
+
+                    <span class="categoria">
+                        Simples
+                    </span>
+
+                    <h3>
+                        Bolo Caseiro
+                    </h3>
+
+                    <p>
+                        Receita simples, econômica e muito saborosa.
+                    </p>
+
+
+                    <div class="acoes">
+
+                        <button
+                            class="like-btn"
+                            aria-label="Curtir Bolo Caseiro"
+                        >
+
+                            <span>♡</span>
+
+                            <span class="contador">
+                                0
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="ver-btn"
+                            data-receita="simples"
+                        >
+                            Ver receita
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         VÍDEO DO YOUTUBE
+    ===================================================== -->
+
+    <section
+        class="video-section"
+        id="video"
+        aria-labelledby="titulo-video"
+    >
+
+        <div class="video-content">
+
+            <h2 id="titulo-video">
+                🎥 Aprenda com o vídeo
+            </h2>
+
+            <p>
+                Confira o vídeo da receita e acompanhe o preparo.
+            </p>
+
+
+            <div class="video-container">
+
+                <iframe
+                    src="https://www.youtube.com/embed/QFMxJWh3mqE"
+                    title="Vídeo de receita de bolo"
+                    allow="
+                        accelerometer;
+                        autoplay;
+                        clipboard-write;
+                        encrypted-media;
+                        gyroscope;
+                        picture-in-picture;
+                        web-share
+                    "
+                    allowfullscreen
+                    loading="lazy"
+                ></iframe>
+
             </div>
 
-        `;
+        </div>
+
+    </section>
 
 
-        container.appendChild(card);
+    <!-- =====================================================
+         NEWSLETTER
+    ===================================================== -->
 
-    });
-
-}
-
-
-
-/* ==========================================
-   SISTEMA DE LIKE
-========================================== */
-
-function darLike(id) {
-
-    const chaveLikes =
-        `likes-${id}`;
-
-    const chaveCurtiu =
-        `curtiu-${id}`;
-
-
-    let likes =
-        parseInt(
-            localStorage.getItem(chaveLikes)
-        ) || 0;
-
-
-    const curtiu =
-        localStorage.getItem(chaveCurtiu)
-        === "true";
-
-
-    if (curtiu) {
-
-        likes--;
-
-        localStorage.setItem(
-            chaveCurtiu,
-            "false"
-        );
-
-    } else {
-
-        likes++;
-
-        localStorage.setItem(
-            chaveCurtiu,
-            "true"
-        );
-    }
-
-
-    localStorage.setItem(
-        chaveLikes,
-        likes
-    );
-
-
-    carregarReceitas();
-}
-
-
-
-/* ==========================================
-   ABRIR RECEITA
-========================================== */
-
-function abrirReceita(id) {
-
-    const receita =
-        receitas.find(
-            item => item.id === id
-        );
-
-
-    if (!receita) return;
-
-
-    const modal =
-        document.getElementById("modal");
-
-    const conteudo =
-        document.getElementById(
-            "conteudoModal"
-        );
-
-
-    const ingredientes =
-        receita.ingredientes
-            .map(item => `<li>${item}</li>`)
-            .join("");
-
-
-    conteudo.innerHTML = `
+    <section
+        class="newsletter"
+        id="newsletter"
+    >
 
         <h2>
-            🍰 ${receita.nome}
+            📩 Receba novas receitas
         </h2>
 
-
         <p>
-            ${receita.descricao}
+            Cadastre seu e-mail para receber novidades.
         </p>
 
 
-        <h3>
-            🛒 Ingredientes
-        </h3>
+        <form
+            class="newsletter-form"
+            id="newsletterForm"
+        >
+
+            <input
+                type="email"
+                placeholder="Seu melhor e-mail"
+                aria-label="Seu melhor e-mail"
+                required
+            >
+
+            <button type="submit">
+                Cadastrar
+            </button>
+
+        </form>
+
+    </section>
 
 
-        <ul>
-            ${ingredientes}
-        </ul>
+    <!-- =====================================================
+         MODAL DE RECEITA
+    ===================================================== -->
+
+    <div
+        class="modal"
+        id="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="modalTitulo"
+    >
+
+        <div class="modal-content">
+
+            <button
+                class="fechar"
+                id="fecharModal"
+                aria-label="Fechar receita"
+            >
+                ×
+            </button>
 
 
-        <h3>
-            👨‍🍳 Modo de preparo
-        </h3>
+            <h2 id="modalTitulo">
+                Receita
+            </h2>
 
+
+            <div id="modalTexto"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         FOOTER
+    ===================================================== -->
+
+    <footer>
 
         <p>
-            ${receita.preparo}
+            © 2026 Bolos & Sabores — Feito com ❤️
         </p>
 
-    `;
+    </footer>
 
 
-    modal.classList.add("active");
-}
+    <!-- =====================================================
+         JAVASCRIPT
+    ===================================================== -->
+
+    <script>
 
 
+        /* =====================================================
+           MODO ESCURO
+        ===================================================== */
 
-/* ==========================================
-   FECHAR MODAL
-========================================== */
-
-function fecharModal() {
-
-    document
-        .getElementById("modal")
-        .classList.remove("active");
-
-}
+        const temaBtn =
+            document.getElementById("temaBtn");
 
 
-document
-    .getElementById("modal")
-    .addEventListener(
-        "click",
-        function(event) {
+        temaBtn.addEventListener("click", function () {
+
+            document.body.classList.toggle("dark");
+
 
             if (
-                event.target === this
+                document.body.classList.contains("dark")
             ) {
 
-                fecharModal();
+                temaBtn.textContent = "☀️";
 
-            }
-
-        }
-    );
-
-
-
-/* ==========================================
-   FILTRAR CATEGORIA
-========================================== */
-
-function filtrarCategoria(
-    categoria,
-    botao
-) {
-
-    document
-        .querySelectorAll(".categoria-btn")
-        .forEach(btn =>
-            btn.classList.remove("active")
-        );
-
-
-    botao.classList.add("active");
-
-
-    if (categoria === "todos") {
-
-        carregarReceitas();
-
-        return;
-    }
-
-
-    const filtradas =
-        receitas.filter(
-            receita =>
-                receita.categoria === categoria
-        );
-
-
-    carregarReceitas(filtradas);
-}
-
-
-
-/* ==========================================
-   PESQUISA
-========================================== */
-
-document
-    .getElementById("pesquisa")
-    .addEventListener(
-        "input",
-        function() {
-
-            const termo =
-                this.value
-                    .toLowerCase()
-                    .trim();
-
-
-            if (!termo) {
-
-                carregarReceitas();
-
-                return;
-            }
-
-
-            const resultados =
-                receitas.filter(
-                    receita =>
-                        receita.nome
-                            .toLowerCase()
-                            .includes(termo)
-                        ||
-                        receita.descricao
-                            .toLowerCase()
-                            .includes(termo)
+                temaBtn.setAttribute(
+                    "aria-label",
+                    "Ativar modo claro"
                 );
 
+            } else {
 
-            carregarReceitas(resultados);
+                temaBtn.textContent = "🌙";
 
-        }
-    );
+                temaBtn.setAttribute(
+                    "aria-label",
+                    "Ativar modo escuro"
+                );
+            }
 
-
-
-/* ==========================================
-   MODO ESCURO
-========================================== */
-
-const temaBtn =
-    document.getElementById(
-        "temaBtn"
-    );
+        });
 
 
-function atualizarTema() {
+        /* =====================================================
+           ACESSIBILIDADE
+        ===================================================== */
 
-    const escuro =
-        document.body.classList
-            .contains("dark");
-
-
-    if (escuro) {
-
-        document.body.classList
-            .remove("dark");
-
-        temaBtn.textContent = "🌙";
-
-        localStorage.setItem(
-            "tema",
-            "claro"
-        );
-
-    } else {
-
-        document.body.classList
-            .add("dark");
-
-        temaBtn.textContent = "☀️";
-
-        localStorage.setItem(
-            "tema",
-            "escuro"
-        );
-
-    }
-
-}
-
-
-temaBtn.addEventListener(
-    "click",
-    atualizarTema
-);
-
-
-
-/* ==========================================
-   RECUPERAR TEMA
-========================================== */
-
-if (
-    localStorage.getItem("tema")
-    === "escuro"
-) {
-
-    document.body.classList
-        .add("dark");
-
-    temaBtn.textContent = "☀️";
-}
-
-
-
-/* ==========================================
-   NEWSLETTER
-========================================== */
-
-document
-    .getElementById("newsletterForm")
-    .addEventListener(
-        "submit",
-        function(event) {
-
-            event.preventDefault();
-
-
-            const email =
-                document.getElementById(
-                    "email"
-                ).value;
-
-
-            alert(
-                `🎉 Obrigado! O e-mail ${email} foi cadastrado com sucesso.`
+        const acessibilidadeBtn =
+            document.getElementById(
+                "acessibilidadeBtn"
             );
 
 
-            this.reset();
+        const painel =
+            document.getElementById(
+                "acessibilidadePainel"
+            );
 
-        }
-    );
+
+        acessibilidadeBtn.addEventListener(
+            "click",
+            function () {
+
+                painel.classList.toggle("active");
+
+            }
+        );
 
 
+        /* =====================================================
+           AUMENTAR FONTE
+        ===================================================== */
 
-/* ==========================================
-   INICIAR
-========================================== */
+        document
+            .getElementById("aumentarFonte")
+            .addEventListener("click", function () {
 
-carregarReceitas();
+                document.body.classList.add(
+                    "fonte-grande"
+                );
 
-</script>
+            });
+
+
+        /* =====================================================
+           DIMINUIR FONTE
+        ===================================================== */
+
+        document
+            .getElementById("diminuirFonte")
+            .addEventListener("click", function () {
+
+                document.body.classList.remove(
+                    "fonte-grande"
+                );
+
+            });
+
+
+        /* =====================================================
+           ALTO CONTRASTE
+        ===================================================== */
+
+        document
+            .getElementById("contrasteBtn")
+            .addEventListener("click", function () {
+
+                document.body.classList.toggle(
+                    "alto-contraste"
+                );
+
+            });
+
+
+        /* =====================================================
+           RESTAURAR ACESSIBILIDADE
+        ===================================================== */
+
+        document
+            .getElementById("resetAcessibilidade")
+            .addEventListener("click", function () {
+
+                document.body.classList.remove(
+                    "fonte-grande"
+                );
+
+                document.body.classList.remove(
+                    "alto-contraste"
+                );
+
+            });
+
+
+        /* =====================================================
+           PESQUISA
+        ===================================================== */
+
+        const pesquisa =
+            document.getElementById("pesquisa");
+
+
+        const cards =
+            document.querySelectorAll(".card");
+
+
+        pesquisa.addEventListener(
+            "input",
+            function () {
+
+                const termo =
+                    pesquisa.value
+                        .toLowerCase()
+                        .trim();
+
+
+                cards.forEach(function (card) {
+
+                    const nome =
+                        card.dataset.nome
+                            .toLowerCase();
+
+
+                    const categoria =
+                        card.dataset.categoria
+                            .toLowerCase();
+
+
+                    if (
+                        nome.includes(termo) ||
+                        categoria.includes(termo)
+                    ) {
+
+                        card.style.display = "";
+
+                    } else {
+
+                        card.style.display = "none";
+                    }
+
+                });
+
+            }
+        );
+
+
+        /* =====================================================
+           FILTRO DE CATEGORIAS
+        ===================================================== */
+
+        const botoesCategoria =
+            document.querySelectorAll(
+                ".categoria-btn"
+            );
+
+
+        botoesCategoria.forEach(function (botao) {
+
+            botao.addEventListener(
+                "click",
+                function () {
+
+                    botoesCategoria.forEach(
+                        function (btn) {
+
+                            btn.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+
+                    botao.classList.add("active");
+
+
+                    const categoria =
+                        botao.dataset.categoria;
+
+
+                    cards.forEach(function (card) {
+
+                        if (
+                            categoria === "todos" ||
+                            card.dataset.categoria === categoria
+                        ) {
+
+                            card.style.display = "";
+
+                        } else {
+
+                            card.style.display = "none";
+                        }
+
+                    });
+
+                }
+            );
+
+        });
+
+
+        /* =====================================================
+           CURTIDAS
+        ===================================================== */
+
+        document
+            .querySelectorAll(".like-btn")
+            .forEach(function (botao) {
+
+                botao.addEventListener(
+                    "click",
+                    function () {
+
+                        const contador =
+                            botao.querySelector(
+                                ".contador"
+                            );
+
+
+                        let numero =
+                            Number(contador.textContent);
+
+
+                        if (
+                            botao.classList.contains(
+                                "liked"
+                            )
+                        ) {
+
+                            numero--;
+
+                            botao.classList.remove(
+                                "liked"
+                            );
+
+                            botao.querySelector(
+                                "span"
+                            ).textContent = "♡";
+
+                        } else {
+
+                            numero++;
+
+                            botao.classList.add(
+                                "liked"
+                            );
+
+                            botao.querySelector(
+                                "span"
+                            ).textContent = "♥";
+                        }
+
+
+                        contador.textContent =
+                            numero;
+
+                    }
+                );
+
+            });
+
+
+        /* =====================================================
+           RECEITAS
+        ===================================================== */
+
+        const receitas = {
+
+            chocolate: {
+
+                titulo:
+                    "🍫 Bolo de Chocolate",
+
+                texto: `
+                    <h3>Ingredientes</h3>
+
+                    <ul>
+                        <li>2 xícaras de farinha de trigo</li>
+                        <li>1 xícara de açúcar</li>
+                        <li>1 xícara de chocolate em pó</li>
+                        <li>3 ovos</li>
+                        <li>1 xícara de leite</li>
+                        <li>1/2 xícara de óleo</li>
+                        <li>1 colher de sopa de fermento</li>
+                    </ul>
+
+                    <h3>Modo de preparo</h3>
+
+                    <p>
+                        Misture os ovos, o açúcar e o óleo.
+                        Acrescente o leite e o chocolate.
+                        Adicione a farinha aos poucos e,
+                        por último, o fermento.
+                        Asse em forno preaquecido a 180°C
+                        por aproximadamente 35 minutos.
+                    </p>
+                `
+            },
+
+
+            morango: {
+
+                titulo:
+                    "🍓 Bolo de Morango",
+
+                texto: `
+                    <h3>Ingredientes</h3>
+
+                    <ul>
+                        <li>2 xícaras de farinha</li>
+                        <li>1 xícara de açúcar</li>
+                        <li>3 ovos</li>
+                        <li>1 xícara de leite</li>
+                        <li>1 colher de fermento</li>
+                        <li>Morangos frescos</li>
+                        <li>Creme para recheio</li>
+                    </ul>
+
+                    <h3>Modo de preparo</h3>
+
+                    <p>
+                        Prepare a massa misturando os
+                        ingredientes até ficar homogênea.
+                        Asse a 180°C.
+                        Depois de frio, corte o bolo,
+                        recheie com creme e morangos
+                        e finalize com mais morangos.
+                    </p>
+                `
+            },
+
+
+            simples: {
+
+                titulo:
+                    "🧁 Bolo Caseiro",
+
+                texto: `
+                    <h3>Ingredientes</h3>
+
+                    <ul>
+                        <li>3 ovos</li>
+                        <li>2 xícaras de farinha</li>
+                        <li>1 xícara de açúcar</li>
+                        <li>1 xícara de leite</li>
+                        <li>3 colheres de manteiga</li>
+                        <li>1 colher de fermento</li>
+                    </ul>
+
+                    <h3>Modo de preparo</h3>
+
+                    <p>
+                        Bata os ovos, o açúcar e a manteiga.
+                        Acrescente o leite e a farinha.
+                        Misture bem e adicione o fermento.
+                        Leve ao forno preaquecido a 180°C
+                        por aproximadamente 35 minutos.
+                    </p>
+                `
+            }
+
+        };
+
+
+        /* =====================================================
+           MODAL
+        ===================================================== */
+
+        const modal =
+            document.getElementById("modal");
+
+
+        const modalTitulo =
+            document.getElementById(
+                "modalTitulo"
+            );
+
+
+        const modalTexto =
+            document.getElementById(
+                "modalTexto"
+            );
+
+
+        const fecharModal =
+            document.getElementById(
+                "fecharModal"
+            );
+
+
+        document
+            .querySelectorAll(".ver-btn")
+            .forEach(function (botao) {
+
+                botao.addEventListener(
+                    "click",
+                    function () {
+
+                        const receita =
+                            receitas[
+                                botao.dataset.receita
+                            ];
+
+
+                        modalTitulo.textContent =
+                            receita.titulo;
+
+
+                        modalTexto.innerHTML =
+                            receita.texto;
+
+
+                        modal.classList.add(
+                            "active"
+                        );
+
+
+                        fecharModal.focus();
+
+                    }
+                );
+
+            });
+
+
+        fecharModal.addEventListener(
+            "click",
+            function () {
+
+                modal.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+        /* Fecha clicando fora */
+
+        modal.addEventListener(
+            "click",
+            function (event) {
+
+                if (
+                    event.target === modal
+                ) {
+
+                    modal.classList.remove(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* Fecha com ESC */
+
+        document.addEventListener(
+            "keydown",
+            function (event) {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    modal.classList.remove(
+                        "active"
+                    );
+
+                    painel.classList.remove(
+                        "active"
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* =====================================================
+           NEWSLETTER
+        ===================================================== */
+
+        document
+            .getElementById("newsletterForm")
+            .addEventListener(
+                "submit",
+                function (event) {
+
+                    event.preventDefault();
+
+                    alert(
+                        "Obrigado! Seu cadastro foi realizado com sucesso. 🍰"
+                    );
+
+                    event.target.reset();
+
+                }
+            );
+
+    </script>
+
 
 </body>
+
 </html>
